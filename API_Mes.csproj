@@ -6,4 +6,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+	
+	<!-- Секция, описывающая настройки для выполнения команды npm run build -->
+	<Target Name="Build" AfterTargets="Build">
+		<Exec WorkingDirectory="front" Command="npm install" />
+		<Exec WorkingDirectory="front" Command="npm run build" />
+	</Target>
+
+	<!-- Секция, описывающая настройки для выполнения команды npm start (запускающей React) -->
+	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+		<Exec WorkingDirectory="front" Command="npm install" />
+		<Exec WorkingDirectory="front" Command="npm start" />
+	</Target>
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.0" />
+	</ItemGroup>
+
 </Project>
